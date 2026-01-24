@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -946,9 +946,12 @@
 </div>
 <audio id="bgMusic" loop style="display:none">
     <source src="sounds/sugar.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop style="display:none">
+    <source src="sounds/sugar.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+    // --- PHẦN 1: XỬ LÝ PHÁT NHẠC ---
     document.addEventListener('DOMContentLoaded', function() {
         var audio = document.getElementById("bgMusic");
         
@@ -964,16 +967,16 @@
             });
         }
 
-        // Thử phát ngay lập tức (sẽ thất bại trên Chrome nhưng có thể được trên một số trình duyệt cũ)
+        // Thử phát ngay lập tức
         tryPlayMusic();
 
-        // QUAN TRỌNG: Lắng nghe hành động người dùng. 
-        // Hễ người dùng chạm, click, hoặc nhấn phím bất kỳ vào trang web thì nhạc sẽ bắt đầu chạy.
+        // Lắng nghe hành động người dùng để phát nhạc
         document.addEventListener('click', tryPlayMusic);
         document.addEventListener('touchstart', tryPlayMusic);
         document.addEventListener('keydown', tryPlayMusic);
     });
-</script>
+
+    // --- PHẦN 2: CẤU HÌNH DATEPICKER & THICKBOX (Đoạn này bị lỗi cú pháp trước đó) ---
     jQuery(document).ready(function (jQuery) {
         jQuery.datepicker.setDefaults({
             "closeText": "Close",
@@ -991,7 +994,6 @@
         });
     });
 
-    /*  */
     var thickboxL10n = {
         "next": "Next >",
         "prev": "< Prev",
@@ -1001,13 +1003,8 @@
         "noiframes": "This feature requires inline frames. You have iframes disabled or your browser does not support them.",
         "loadingAnimation": "images\/loadingAnimation.gif"
     };
-    /*  */
 </script>
+
 <script defer src="js/autoptimize_4c7a21032ed0f0652f5854a665252e17.js"></script>
 </body>
-
 </html>
-
-
-
-
