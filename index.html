@@ -944,20 +944,36 @@
         </footer>
     </section>
 </div>
-<audio controls autoplay loop hidden>
+<audio id="bgMusic" loop style="display:none">
     <source src="sounds/sugar.mp3" type="audio/mpeg">
 </audio>
-<script>
-    /*  */
-    var _wpcf7 = {
-        "recaptcha": {
-            "messages": {
-                "empty": "Please verify that you are not a robot."
-            }
-        }
-    };
-    /*  */
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var audio = document.getElementById("bgMusic");
+        
+        // Hàm thử phát nhạc
+        function tryPlayMusic() {
+            audio.play().then(() => {
+                // Nếu phát thành công thì gỡ các sự kiện lắng nghe đi
+                document.removeEventListener('click', tryPlayMusic);
+                document.removeEventListener('touchstart', tryPlayMusic);
+                document.removeEventListener('keydown', tryPlayMusic);
+            }).catch(error => {
+                console.log("Chờ người dùng tương tác để phát nhạc...");
+            });
+        }
+
+        // Thử phát ngay lập tức (sẽ thất bại trên Chrome nhưng có thể được trên một số trình duyệt cũ)
+        tryPlayMusic();
+
+        // QUAN TRỌNG: Lắng nghe hành động người dùng. 
+        // Hễ người dùng chạm, click, hoặc nhấn phím bất kỳ vào trang web thì nhạc sẽ bắt đầu chạy.
+        document.addEventListener('click', tryPlayMusic);
+        document.addEventListener('touchstart', tryPlayMusic);
+        document.addEventListener('keydown', tryPlayMusic);
+    });
+</script>
     jQuery(document).ready(function (jQuery) {
         jQuery.datepicker.setDefaults({
             "closeText": "Close",
@@ -991,4 +1007,5 @@
 </body>
 
 </html>
+
 
